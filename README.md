@@ -19,7 +19,7 @@ Añadir nodepop-api en el fichero .gitignore
 * Ejecución
 
 ```
-npm run start
+npm start
 ```
 
 * Swagger --> http://localhost:3001/swagger

@@ -1,1 +1,5 @@
-nodepop-api
+# nodepop-api
+/nodepop-api/dist
+/nodepop-api/node_modules
+/nodepop-api/src
+/nodepop-api/test

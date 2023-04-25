@@ -29,7 +29,8 @@ npm start
 
 * **AXIOS** --> npm install axios
 * **ROUTER** --> npm install react-router-dom
-
+* **classnames** --> npm install classnames
+* **styled-components** --> npm install --save styled-components
 ### Plug-in VSC
 
 * **Prettier** - Code formatter
@@ -39,10 +40,9 @@ npm start
 * Chrome: **React Developer Tools**
 * Firefox: **React Developer Tools**
 
-## Librerias que de momento no instalo
 
-* **classnames** --> npm install classnames
-* **styled-components** --> npm install --save styled-components
+
+
 
 
 

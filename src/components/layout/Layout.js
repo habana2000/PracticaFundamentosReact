@@ -10,7 +10,7 @@ const Layout = ({ title, children, ...rest }) => {
         <h2 className="layout-title bordered">{title}</h2>
         {children}
       </main>
-      <footer className="layout-footer bordered">@2023 Keepcoding</footer>
+      <footer className="layout-footer bordered">@2023 XaviRoca</footer>
     </div>
   );
 };

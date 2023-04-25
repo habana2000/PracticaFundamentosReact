@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 
 import TweetsPage from './components/tweets/TweetsPage';
 import NewTweetPage from './components/tweets/NewTweetPage';
+import NewAdvertPage from './components/adverts/NewAdvertPage';
 import TweetPage from './components/tweets/TweetPage';
 import RequireAuth from './components/auth/RequireAuth';
 
@@ -23,6 +24,14 @@ function App() {
             element={
               <RequireAuth>
                 <NewTweetPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/adverts/new"
+            element={
+              <RequireAuth>
+                <NewAdvertPage />
               </RequireAuth>
             }
           />

@@ -26,12 +26,12 @@ const Header = ({ className }) => {
       </Link>
       <nav className="header-nav">
         <NavLink
-          to="/tweets/new"
+          to="/adverts/new"
           className="header-nav-item"
           // className={({ isActive }) => (isActive ? 'selected' : '')}
           // style={({ isActive }) => (isActive ? { color: 'red' } : null)}
         >
-          New Tweet
+          New Advert
         </NavLink>{' '}
         <NavLink to="/tweets" className="header-nav-item" end>
           See latest tweets

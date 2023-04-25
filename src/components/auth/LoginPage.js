@@ -19,6 +19,7 @@ function LoginPage() {
     email: '',
     password: '',
   });
+  const [rememberPassword, setRememberPassword] = useState(true);
 
   const resetError = () => {
     setError(null);
@@ -31,7 +32,7 @@ function LoginPage() {
     setIsLoading(true);
 
     try {
-      await login(credentials);
+      await login(credentials,rememberPassword);
       setIsLoading(false);
       // Logged in
       onLogin();
@@ -49,6 +50,10 @@ function LoginPage() {
       ...credentials,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleCheckboxChange = event => {
+    setRememberPassword(event.target.value);
   };
 
   const buttonDisabled =
@@ -75,6 +80,16 @@ function LoginPage() {
           onChange={handleChange}
           value={credentials.password}
         />
+        <label>
+        <input
+          type="checkbox"
+          name="rememberPassword"
+          value= {rememberPassword}
+          checked={rememberPassword === "true"}
+          onChange={handleCheckboxChange}
+          />
+          Remember password
+        </label>
         <Button
           type="submit"
           variant="primary"

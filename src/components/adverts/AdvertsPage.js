@@ -4,7 +4,9 @@ import Button from '../shared/Button';
 import Layout from '../layout/Layout';
 import Advert from './Advert';
 import { Link } from 'react-router-dom';
-import { useRef } from 'react';
+// import { useRef } from 'react';
+
+import './AdvertsPage.css'
 
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
@@ -16,15 +18,17 @@ const EmptyList = () => (
 );
 
 const AdvertsPage = () => {
-  const isMounted = useRef(false);
+  // const isMounted = useRef(false);
 
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [adverts, setAdverts] = useState([]);
 
+  /*
   useEffect(() => {
     isMounted.current = true;
   }, []);
+  */
 
   useEffect(() => {
     async function fetchData() {
@@ -37,11 +41,9 @@ const AdvertsPage = () => {
     fetchData();
   }, []);
 
-  /*
   const filteredAdverts = adverts.filter(advert =>
     (advert.name ?? '').toUpperCase().startsWith(query.toUpperCase()),
   );
-  */
 
   return (
     <Layout title="List of Adverts">
@@ -51,7 +53,7 @@ const AdvertsPage = () => {
         <div>
           {!!adverts.length ? (
             <>
-              <div>
+              <div className="search-block">
                 <label>
                   Search:{' '}
                   <input
@@ -63,20 +65,13 @@ const AdvertsPage = () => {
                 </label>
               </div>
               <ul>
-              {/*filteredAdverts.map(advert => (
+              {filteredAdverts.map(advert => (
                   <li key={advert.id}>
                     <Link to={`/adverts/${advert.id}`}>
                       <Advert {...advert} />
                     </Link>
                   </li>
-              ))*/}
-                {adverts.map(advert => (
-                  <li key={advert.id}>
-                    <Link to={`/adverts/${advert.id}`}>
-                      <Advert {...advert} />
-                    </Link>
-                  </li>
-                ))}
+              ))}
               </ul>
             </>
           ) : (

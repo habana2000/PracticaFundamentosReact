@@ -1,10 +1,9 @@
 import { Suspense, lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
-import TweetsPage from './components/tweets/TweetsPage';
-import NewTweetPage from './components/tweets/NewTweetPage';
+import AdvertsPage from './components/adverts/AdvertsPage';
 import NewAdvertPage from './components/adverts/NewAdvertPage';
-import TweetPage from './components/tweets/TweetPage';
+import AdvertPage from './components/adverts/AdvertPage';
 import RequireAuth from './components/auth/RequireAuth';
 
 import './App.css';
@@ -17,16 +16,8 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/tweets" element={<TweetsPage />} />
-          <Route path="/tweets/:tweetId" element={<TweetPage />} />
-          <Route
-            path="/tweets/new"
-            element={
-              <RequireAuth>
-                <NewTweetPage />
-              </RequireAuth>
-            }
-          />
+          <Route path="/adverts" element={<AdvertsPage />} />
+          <Route path="/adverts/:advertId" element={<AdvertPage />} />
           <Route
             path="/adverts/new"
             element={
@@ -35,7 +26,7 @@ function App() {
               </RequireAuth>
             }
           />
-          <Route path="/" element={<Navigate to="/tweets" />} />
+          <Route path="/" element={<Navigate to="/adverts" />} />
           <Route path="/404" element={<div>404 | Not found</div>} />
           <Route path="*" element={<Navigate to="/404" />} />
         </Routes>

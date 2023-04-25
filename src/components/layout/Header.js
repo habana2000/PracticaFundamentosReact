@@ -33,8 +33,8 @@ const Header = ({ className }) => {
         >
           New Advert
         </NavLink>{' '}
-        <NavLink to="/tweets" className="header-nav-item" end>
-          See latest tweets
+        <NavLink to="/adverts" className="header-nav-item" end>
+          See latest adverts
         </NavLink>
         {isLogged ? (
           <Button onClick={handleLogoutClick} className="header-button">

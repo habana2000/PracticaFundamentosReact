@@ -1,42 +1,48 @@
-import { memo, useCallback, useMemo, useState } from 'react';
+import { useState } from 'react';
 import Layout from '../layout/Layout';
 import Button from '../shared/Button';
 import Photo from '../shared/Photo';
 import FormField from '../shared/FormField'
+import ListaSeleccionMultiple from '../shared/ListElement';
+
 
 import './NewAdvertPage.css';
 import { createAdvert } from './service';
 import { useNavigate } from 'react-router-dom';
 
 const MIN_CHARACTERS = 5;
-const MAX_CHARACTERS = 140;
+const MAX_CHARACTERS_NAME = 60;
 
 const NewAdvertPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
-  const [sale, setSale] = useState('');
-  const [price, setPrice] = useState('');
-  const [tags, setTags] = useState('');
+  const [sale, setSale] = useState(null);
+  const [price, setPrice] = useState(null);
+  const [tags, setTags] = useState(null);
 
   const handleChangeName = event => {
     setName(event.target.value);
   };
-  const handleChangeSale = event => {
-    setSale(event.target.value);
-  };
+  function handleCheckboxChange(event) {
+    const newValue = event.target.value;
+    setSale(newValue === sale ? null : newValue);
+  }
   const handleChangePrice = event => {
     setPrice(event.target.value);
   };
   const handleChangeTags = event => {
     setTags(event.target.value);
+    console.log(event.target.value);
   };
 
   const handleSubmit = async event => {
     event.preventDefault();
     try {
       setIsLoading(true);
+      console.log('Entrada: ' ,{ name, sale, price, tags });
       const advert = await createAdvert({ name, sale, price, tags });
+      console.log('Salida: ', advert);
       setIsLoading(false);
       navigate(`/adverts/${advert.id}`);
     } catch (error) {
@@ -47,7 +53,7 @@ const NewAdvertPage = () => {
   };
 
   const isDisabled = isLoading || name.length < MIN_CHARACTERS;
-  const characters = `${name.length} / ${MAX_CHARACTERS} characters`;
+  const charactersName = `${name.length} / ${MAX_CHARACTERS_NAME} chars (min 5)`;
 
   /*
   const objProperty = useMemo(() => {
@@ -67,41 +73,69 @@ const NewAdvertPage = () => {
         </div>
         <div className="right">
           <form onSubmit={handleSubmit}>
+            <div className="newAdvertPage-flex"> 
+              <div className="FieldLabel right">Name</div>
+              <div className="newAdvertPage-characters left">{charactersName}</div>
+            </div>
           <FormField
               name="name"
               className="newAdvertPage-formfield"
               placeholder="Advert's name"
               onChange={handleChangeName}
               value={name}
-              maxLength={MAX_CHARACTERS}
+              maxLength={MAX_CHARACTERS_NAME}
               autofocus
-            />
-            <FormField
-              name="sale"
-              className="newAdvertPage-formfield"
-              placewholder="is for sale"
-              onChange={handleChangeSale}
-              value={sale}
-              maxLength={MAX_CHARACTERS}
-            />
+              />
+            <div className="newAdvertPage-flex">
+              <span className="FieldLabel">Type</span>
+              <div>
+
+      <label>
+        <input
+          type="checkbox"
+          name="For sale"
+          value="true"
+          checked={sale === "true"}
+          onChange={handleCheckboxChange}
+          />
+        For sale
+      </label>
+
+      <label>
+        <input
+          type="checkbox"
+          name="For buy"
+          value="false"
+          checked={sale === "false"}
+          onChange={handleCheckboxChange}
+          />
+        For buy
+      </label>
+    </div>
+
+    </div>
+            <div className="newAdvertPage-flex"> 
+              <div className="FieldLabel right">Price</div>
+              <div className="newAdvertPage-characters left">Only numbers</div>
+            </div>
             <FormField
               name="price"
               className="newAdvertPage-formfield"
               placeholder="Advert's price"
               onChange={handleChangePrice}
               value={price}
-              maxLength={MAX_CHARACTERS}
+              maxLength={MAX_CHARACTERS_NAME}
             />
-            <FormField
+            <div>
+            <span className="FieldLabel">Tags</span>
+            <ListaSeleccionMultiple 
+              opciones={['lifestyle', 'mobile', 'motor', 'work']}
               name="tags"
-              className="newAdvertPage-formfield"
-              placeholder="Advert's tags"
+              value="tags"
               onChange={handleChangeTags}
-              value={tags}
-              maxLength={MAX_CHARACTERS}
-            />
+              />
+              </div>
             <div className="newAdvertPage-footer">
-              <span className="newAdvertPage-characters">{characters}</span>
               <Button
                 type="submit"
                 className="newAdvertPage-submit"

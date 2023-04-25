@@ -25,3 +25,7 @@
 .newAdvertPage-submit {
   margin-left: auto;
 }
+
+.newAdvertPage-flex {
+  display: flex;
+}

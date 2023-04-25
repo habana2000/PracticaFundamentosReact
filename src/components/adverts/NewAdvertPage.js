@@ -3,7 +3,7 @@ import Layout from '../layout/Layout';
 import Button from '../shared/Button';
 import Photo from '../shared/Photo';
 import FormField from '../shared/FormField'
-import ListaSeleccionMultiple from '../shared/ListElement';
+// import ListaSeleccionMultiple from '../shared/ListElement';
 
 
 import './NewAdvertPage.css';
@@ -51,7 +51,12 @@ const NewAdvertPage = () => {
     }
   };
 
-  const isDisabled = isLoading || name.length < MIN_CHARACTERS;
+  const isDisabled = isLoading || 
+    name.length < MIN_CHARACTERS ||
+    (price && price.length === 0) ||
+    (tags && tags.length === 0) ||
+    !sale;
+
   const charactersName = `${name.length} / ${MAX_CHARACTERS_NAME} chars (min 5)`;
 
   /*
@@ -91,6 +96,7 @@ const NewAdvertPage = () => {
             </div>
             <FormField
               name="price"
+              type="number"
               className="newAdvertPage-formfield"
               placeholder="Advert's price"
               onChange={handleChangePrice}

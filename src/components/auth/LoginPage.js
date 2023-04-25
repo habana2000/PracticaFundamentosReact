@@ -32,6 +32,7 @@ function LoginPage() {
     setIsLoading(true);
 
     try {
+      console.log('Recordar password a enviar: ',rememberPassword)
       await login(credentials,rememberPassword);
       setIsLoading(false);
       // Logged in
@@ -53,7 +54,8 @@ function LoginPage() {
   };
 
   const handleCheckboxChange = event => {
-    setRememberPassword(event.target.value);
+    setRememberPassword(rememberPassword ? false : true);
+    console.log('rememberPassword: ',rememberPassword);
   };
 
   const buttonDisabled =
@@ -84,9 +86,10 @@ function LoginPage() {
         <input
           type="checkbox"
           name="rememberPassword"
-          value= {rememberPassword}
-          checked={rememberPassword === "true"}
+          value= {rememberPassword? rememberPassword : false}
+          checked={rememberPassword === true}
           onChange={handleCheckboxChange}
+          // onClick={handleCheckboxChange}
           />
           Remember password
         </label>

@@ -8,7 +8,8 @@ export const login = (credentials, rememberPassword) => {
 
   return client.post('/api/auth/login', credentials).then(({ accessToken }) => {
     setAuthorizationHeader(accessToken);
-    if (rememberPassword) {
+    console.log('Dentro de la funcion: ',rememberPassword);
+    if (rememberPassword === true) {
       storage.set('auth', accessToken);
     }
   });

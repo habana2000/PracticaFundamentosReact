@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Layout from '../layout/Layout';
 import { useEffect, useState } from 'react';
 import { getAdvert } from './service';
@@ -28,11 +28,28 @@ const AdvertPage = () => {
 
   return (
     <Layout title="Advert detail">{advert && <div>
-        <div>Name: {advert.name}</div>
-        <div>Sale: {advert.sale}</div>
-        <div>Price: {advert.price}</div>
-        <div>tags: {advert.tags}</div>
-        </div>}</Layout>
+      <table>
+        <tr>
+          <td>
+            <div>Name: {advert.name}</div>
+            <div>Sale: {advert.sale}</div>
+            <div>Price: {advert.price}</div>
+            <div>tags: {advert.tags}</div>
+          </td>
+          <td>
+            <div className="right">
+              <img className="advert-foto" 
+              src={advert.photo ? advert.photo : "https://media.istockphoto.com/vectors/no-image-available-icon-vector-id1216251206?k=6&m=1216251206&s=612x612&w=0&h=G8kmMKxZlh7WyeYtlIHJDxP5XRGm9ZXyLprtVJKxd-o="} 
+              alt="Imagen"
+              width= "100%"
+              max-width= "100px" 
+              />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </div>}
+    </Layout>
   );
 };
 

@@ -2,6 +2,7 @@
   border-bottom-width: 1px;
   cursor: pointer;
   display: flex;
+
   padding: 10px 15px 0 15px;
   transition: background-color 0.2s;
 }
@@ -33,4 +34,9 @@
 
 .advert-separator {
   padding: 0 5px;
+}
+
+.advert-foto {
+  width: 100%;
+  max-width: 100px;  
 }

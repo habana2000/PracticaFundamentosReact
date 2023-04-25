@@ -61,7 +61,7 @@ const AdvertsPage = () => {
         <div>
           {!!adverts.length ? (
             <>
-            <div className="search-block">
+            <div className="search-block bordered">
               <div className="search-field">
                 <label>
                   Search by name:{' '}

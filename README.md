@@ -23,6 +23,7 @@ npm start
 ```
 
 * Swagger --> http://localhost:3001/swagger
+* User --> xroca@vilamatica.com / 1234
 
 ### Librerias necesarias
 

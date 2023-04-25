@@ -3,3 +3,6 @@
 /nodepop-api/node_modules
 /nodepop-api/src
 /nodepop-api/test
+
+# node
+node_modules

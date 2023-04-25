@@ -3,7 +3,7 @@ import React from 'react';
 import Photo from '../shared/Photo';
 import './Advert.css';
 
-const Advert = ({ name, sale, price, tags, updatedAt}) => {
+const Advert = ({ name, sale, price, tags, createdAt}) => {
   return (
     <article className="advert bordered">
       <div className="left">
@@ -15,10 +15,8 @@ const Advert = ({ name, sale, price, tags, updatedAt}) => {
           <span className="advert-separator">·</span>
         </div>
         <div>
-          {name}
-          {sale}
-          {price}
-          {tags}
+          <p>Type: {sale? 'Sale' : 'Buy'} | Price: {price} | Tags: {tags}</p>
+          <p>Created: {createdAt}</p>
           <div className="advert-actions">
           </div>
         </div>

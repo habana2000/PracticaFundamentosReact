@@ -27,7 +27,12 @@ const AdvertPage = () => {
   */
 
   return (
-    <Layout title="Advert detail">{advert && <div>{advert.name}</div>}</Layout>
+    <Layout title="Advert detail">{advert && <div>
+        <div>Name: {advert.name}</div>
+        <div>Sale: {advert.sale}</div>
+        <div>Price: {advert.price}</div>
+        <div>tags: {advert.tags}</div>
+        </div>}</Layout>
   );
 };
 

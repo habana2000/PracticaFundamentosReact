@@ -1,6 +1,5 @@
 import Button from '../shared/Button';
 
-import logo, { ReactComponent as Icon } from '../../assets/twitter.svg';
 import { logout } from '../auth/service';
 import classNames from 'classnames';
 
@@ -20,8 +19,11 @@ const Header = ({ className }) => {
     <header className={classNames('header', className)}>
       <Link to="/">
         <div className="header-logo">
-          {/* <img src={logo} alt="twitter-react" /> */}
-          <Icon width="32" height="32" />
+          <img 
+            src="https://th.bing.com/th/id/OIP.M-e5j8-LdiK3jq9Bu5iI9QHaHa?pid=ImgDet&rs=1"
+            alt="twitter-react" 
+            width="48" height="48"
+            />
         </div>
       </Link>
       <nav className="header-nav">

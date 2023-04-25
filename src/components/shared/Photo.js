@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import defaultPhoto from '../../assets/default-profile.png';
+import defaultPhoto from '../../assets/advert.png';
 import './Photo.css';
 
 const Photo = ({ className, ...props }) => (

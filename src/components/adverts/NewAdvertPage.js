@@ -33,8 +33,7 @@ const NewAdvertPage = () => {
   };
   const handleChangeTags = event => {
     setTags(event.target.value);
-    console.log(event.target.value);
-  };
+   };
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -86,6 +85,31 @@ const NewAdvertPage = () => {
               maxLength={MAX_CHARACTERS_NAME}
               autofocus
               />
+            <div className="newAdvertPage-flex"> 
+              <div className="FieldLabel right">Price</div>
+              <div className="newAdvertPage-characters left">Only numbers</div>
+            </div>
+            <FormField
+              name="price"
+              className="newAdvertPage-formfield"
+              placeholder="Advert's price"
+              onChange={handleChangePrice}
+              value={price}
+              maxLength={MAX_CHARACTERS_NAME}
+            />
+            <div>
+            <div className="newAdvertPage-flex"> 
+              <div className="FieldLabel right">Tags</div>
+              <div className="newAdvertPage-characters left">Values: lifestyle, mobile, motor, work</div>
+            </div>
+            <FormField
+              name="tags"
+              className="newAdvertPage-formfield"
+              placeholder="List of tags separated by comma"
+              onChange={handleChangeTags}
+              value={tags}
+              maxLength={MAX_CHARACTERS_NAME}
+            />
             <div className="newAdvertPage-flex">
               <span className="FieldLabel">Type</span>
               <div>
@@ -114,27 +138,7 @@ const NewAdvertPage = () => {
     </div>
 
     </div>
-            <div className="newAdvertPage-flex"> 
-              <div className="FieldLabel right">Price</div>
-              <div className="newAdvertPage-characters left">Only numbers</div>
             </div>
-            <FormField
-              name="price"
-              className="newAdvertPage-formfield"
-              placeholder="Advert's price"
-              onChange={handleChangePrice}
-              value={price}
-              maxLength={MAX_CHARACTERS_NAME}
-            />
-            <div>
-            <span className="FieldLabel">Tags</span>
-            <ListaSeleccionMultiple 
-              opciones={['lifestyle', 'mobile', 'motor', 'work']}
-              name="tags"
-              value="tags"
-              onChange={handleChangeTags}
-              />
-              </div>
             <div className="newAdvertPage-footer">
               <Button
                 type="submit"

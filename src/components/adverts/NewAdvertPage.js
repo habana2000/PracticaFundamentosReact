@@ -35,9 +35,6 @@ const NewAdvertPage = () => {
     }, []);
 
 
-  
-  console.log('availableTags: ', availableTags);
-
   const handleChangeName = event => {
     setName(event.target.value);
   };
@@ -115,16 +112,6 @@ const NewAdvertPage = () => {
             />
             <div>
 
-            {/*}
-            <FormField
-            name="tags"
-            className="newAdvertPage-formfield"
-            placeholder="List of tags separated by comma"
-            onChange={handleChangeTags}
-            value={tags}
-            maxLength={MAX_CHARACTERS_NAME}
-            />
-          */}
           <div className="newAdvertPage-flex"> 
             <div className="FieldLabel right">Tags</div>
             <div className="newAdvertPage-characters left">Selected: {tags.join(", ")}</div>

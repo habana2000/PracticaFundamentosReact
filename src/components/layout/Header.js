@@ -12,9 +12,12 @@ const Header = ({ className }) => {
   const { isLogged, onLogout } = useAuth();
 
   const handleLogoutClick = async () => { 
-    await logout();
-    onLogout();
-    navigate('/login');
+    const confirmed = window.confirm("Do you really want to log out?");
+    if (confirmed) {
+      await logout();
+      onLogout();
+      navigate('/login');
+    }
   };
 
   return (

@@ -18,7 +18,6 @@ const EmptyList = () => (
 );
 
 const AdvertsPage = () => {
-  // const isMounted = useRef(false);
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [bottomPrice, setQueryBottomPrice] = useState(null);
@@ -26,16 +25,11 @@ const AdvertsPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [adverts, setAdverts] = useState([]);
 
-  /*
-  useEffect(() => {
-    isMounted.current = true;
-  }, []);
-  */
-
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
       
+
       try {
         const adverts = await getLatestAdverts();
       } catch (error) {
@@ -51,6 +45,7 @@ const AdvertsPage = () => {
     }
 
       fetchData();
+      
 
   }, []);
 

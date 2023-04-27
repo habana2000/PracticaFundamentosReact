@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from '../layout/Layout';
 import Button from '../shared/Button';
 import Photo from '../shared/Photo';
@@ -7,7 +7,7 @@ import FormField from '../shared/FormField'
 
 
 import './NewAdvertPage.css';
-import { createAdvert } from './service';
+import { createAdvert, getTags } from './service';
 import { useNavigate } from 'react-router-dom';
 
 const MIN_CHARACTERS = 5;
@@ -21,13 +21,22 @@ const NewAdvertPage = () => {
   const [price, setPrice] = useState(null);
   const [tags, setTags] = useState([]);
   const [photo, setPhoto] = useState(undefined);
+  const [availableTags, setAvailableTags] = useState([]);
 
-  const opcionesTags = [
-    { id: 1, nombre: "lifestyle" },
-    { id: 2, nombre: "mobile" },
-    { id: 3, nombre: "motor" },
-    { id: 4, nombre: "work" },
-  ];
+  // Captura de tags
+  useEffect(() => {
+    async function fetchData() {
+      const tags = await getTags();
+      setAvailableTags(tags);
+    }
+
+      fetchData();
+   
+    }, []);
+
+
+  
+  console.log('availableTags: ', availableTags);
 
   const handleChangeName = event => {
     setName(event.target.value);
@@ -52,9 +61,7 @@ const NewAdvertPage = () => {
     event.preventDefault();
     try {
       setIsLoading(true);
-      console.log('Entrada: ' ,{ name, sale, price, tags, photo });
       const advert = await createAdvert({ name, sale, price, tags, photo });
-      console.log('Salida: ', advert);
       setIsLoading(false);
       navigate(`/adverts/${advert.id}`);
     } catch (error) {
@@ -124,18 +131,23 @@ const NewAdvertPage = () => {
           </div>
           <div>
           <select multiple id="opciones" value={tags} onChange={handleChangeTags}>
-        {opcionesTags.map((opcion) => (
-          <option key={opcion.id} value={opcion.nombre}>
-            {opcion.nombre}
+        {availableTags.map((tag) => (
+          <option value={tag}>
+            {tag}
           </option>
         ))}
       </select>
+      
 
           </div>
 
-            <div className="newAdvertPage-flex">
-              <span className="FieldLabel">Type</span>
-              <div>
+
+          <div className="newAdvertPage-flex"> 
+      <div className="FieldLabel right">Type</div>
+      <div className="newAdvertPage-characters left">For sale / For Buy</div>
+    </div>
+
+            <div>
 
       <label>
         <input
@@ -159,11 +171,10 @@ const NewAdvertPage = () => {
         For buy
       </label>
     </div>
-    </div>
 
     <div className="newAdvertPage-flex"> 
-      <div className="FieldLabel right">Tags</div>
-      <div className="newAdvertPage-characters left">Only numbers</div>
+      <div className="FieldLabel right">Photo</div>
+      <div className="newAdvertPage-characters left">Choose a beatiful picture</div>
     </div>
     <div>
       <input 

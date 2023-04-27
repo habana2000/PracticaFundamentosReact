@@ -20,6 +20,7 @@ const NewAdvertPage = () => {
   const [sale, setSale] = useState(null);
   const [price, setPrice] = useState(null);
   const [tags, setTags] = useState(null);
+  const [photo, setPhoto] = useState(undefined);
 
   const handleChangeName = event => {
     setName(event.target.value);
@@ -35,12 +36,16 @@ const NewAdvertPage = () => {
     setTags(event.target.value);
    };
 
+  const handleFileInputChange = (event) => {
+    setPhoto(event.target.files[0]);
+  };   
+
   const handleSubmit = async event => {
     event.preventDefault();
     try {
       setIsLoading(true);
-      console.log('Entrada: ' ,{ name, sale, price, tags });
-      const advert = await createAdvert({ name, sale, price, tags });
+      console.log('Entrada: ' ,{ name, sale, price, tags, photo });
+      const advert = await createAdvert({ name, sale, price, tags, photo });
       console.log('Salida: ', advert);
       setIsLoading(false);
       navigate(`/adverts/${advert.id}`);
@@ -58,16 +63,6 @@ const NewAdvertPage = () => {
     !sale;
 
   const charactersName = `${name.length} / ${MAX_CHARACTERS_NAME} chars (min 5)`;
-
-  /*
-  const objProperty = useMemo(() => {
-    return { isLoading };
-  }, [isLoading]);
-
-  const funcProperty = useCallback(() => {
-    console.log('isLoading', isLoading);
-  }, [isLoading]);
-  */
 
   return (
     <Layout title="New advert">
@@ -142,7 +137,12 @@ const NewAdvertPage = () => {
         For buy
       </label>
     </div>
-
+    </div>
+    <div>
+      <input 
+        type="file" 
+        name="photo" 
+        onChange={handleFileInputChange} />
     </div>
             </div>
             <div className="newAdvertPage-footer">

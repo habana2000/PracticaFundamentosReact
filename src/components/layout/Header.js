@@ -4,15 +4,17 @@ import { logout } from '../auth/service';
 import classNames from 'classnames';
 
 import './Header.css';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/context';
 
 const Header = ({ className }) => {
+  const navigate = useNavigate();
   const { isLogged, onLogout } = useAuth();
 
-  const handleLogoutClick = async () => {
+  const handleLogoutClick = async () => { 
     await logout();
     onLogout();
+    navigate('/login');
   };
 
   return (
@@ -21,7 +23,7 @@ const Header = ({ className }) => {
         <div className="header-logo">
           <img 
             src="https://th.bing.com/th/id/OIP.M-e5j8-LdiK3jq9Bu5iI9QHaHa?pid=ImgDet&rs=1"
-            alt="twitter-react" 
+            alt="advert-react" 
             width="48" height="48"
             />
         </div>

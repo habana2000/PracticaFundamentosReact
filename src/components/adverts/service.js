@@ -13,7 +13,15 @@ export const getAdvert = advertId => {
   return client.get(url);
 };
 
+
 export const createAdvert = advert => {
+  console.log('createAdvert: ', advert)
   const url = advertsUrl;
-  return client.post(url, advert, {});
+  return client.post(url, advert, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 };
+
+

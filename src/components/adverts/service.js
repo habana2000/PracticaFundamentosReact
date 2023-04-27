@@ -19,7 +19,6 @@ export const deleteAdvert = advertId => {
 
 
 export const createAdvert = advert => {
-  console.log('createAdvert: ', advert)
   const url = advertsUrl;
   return client.post(url, advert, {
     headers: {

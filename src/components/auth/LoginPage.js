@@ -32,7 +32,6 @@ function LoginPage() {
     setIsLoading(true);
 
     try {
-      console.log('Recordar password a enviar: ',rememberPassword)
       await login(credentials,rememberPassword);
       setIsLoading(false);
       // Logged in
@@ -55,7 +54,6 @@ function LoginPage() {
 
   const handleCheckboxChange = event => {
     setRememberPassword(rememberPassword ? false : true);
-    console.log('rememberPassword: ',rememberPassword);
   };
 
   const buttonDisabled =

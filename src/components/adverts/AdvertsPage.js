@@ -3,7 +3,7 @@ import { getLatestAdverts } from './service';
 import Button from '../shared/Button';
 import Layout from '../layout/Layout';
 import Advert from './Advert';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import { useRef } from 'react';
 
 import './AdvertsPage.css'
@@ -19,7 +19,7 @@ const EmptyList = () => (
 
 const AdvertsPage = () => {
   // const isMounted = useRef(false);
-
+  const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [bottomPrice, setQueryBottomPrice] = useState(null);
   const [topPrice, setQueryTopPrice] = useState(null);
@@ -35,12 +35,23 @@ const AdvertsPage = () => {
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
+      
+      try {
+        const adverts = await getLatestAdverts();
+      } catch (error) {
+        if (error.status === 401) {
+          navigate('/login');       
+        } 
+      }
+      
       const adverts = await getLatestAdverts();
+
       setAdverts(adverts);
       setIsLoading(false);
     }
 
-    fetchData();
+      fetchData();
+
   }, []);
 
   let filteredAdverts = adverts.filter(advert =>

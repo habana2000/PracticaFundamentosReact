@@ -34,7 +34,7 @@ const AdvertPage = () => {
             <div>Name: {advert.name}</div>
             <div>Sale: {advert.sale}</div>
             <div>Price: {advert.price}</div>
-            <div>tags: {advert.tags}</div>
+            <div>tags: {advert.tags.join(", ")}</div>
           </td>
           <td>
             <div className="right">

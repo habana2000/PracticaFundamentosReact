@@ -15,7 +15,7 @@ const Advert = ({ name, sale, price, tags, photo, createdAt}) => {
           <span className="advert-separator">·</span>
         </div>
         <div>
-          <p>Type: {sale? 'Sale' : 'Buy'} | Price: {price} | Tags: {tags}</p>
+          <p>Type: {sale? 'Sale' : 'Buy'} | Price: {price} | Tags: {tags.join(", ")}</p>
           <p>Created: {createdAt}</p>
           <div className="advert-actions">
           </div>

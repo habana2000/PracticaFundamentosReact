@@ -19,8 +19,15 @@ const NewAdvertPage = () => {
   const [name, setName] = useState('');
   const [sale, setSale] = useState(null);
   const [price, setPrice] = useState(null);
-  const [tags, setTags] = useState(null);
+  const [tags, setTags] = useState([]);
   const [photo, setPhoto] = useState(undefined);
+
+  const opcionesTags = [
+    { id: 1, nombre: "lifestyle" },
+    { id: 2, nombre: "mobile" },
+    { id: 3, nombre: "motor" },
+    { id: 4, nombre: "work" },
+  ];
 
   const handleChangeName = event => {
     setName(event.target.value);
@@ -32,9 +39,10 @@ const NewAdvertPage = () => {
   const handleChangePrice = event => {
     setPrice(event.target.value);
   };
-  const handleChangeTags = event => {
-    setTags(event.target.value);
-   };
+  const handleChangeTags = (event) => {
+    const opcionesSeleccionadas = Array.from(event.target.selectedOptions, (option) => option.value);
+    setTags(opcionesSeleccionadas);
+  };
 
   const handleFileInputChange = (event) => {
     setPhoto(event.target.files[0]);
@@ -99,18 +107,32 @@ const NewAdvertPage = () => {
               maxLength={MAX_CHARACTERS_NAME}
             />
             <div>
-            <div className="newAdvertPage-flex"> 
-              <div className="FieldLabel right">Tags</div>
-              <div className="newAdvertPage-characters left">Values: lifestyle, mobile, motor, work</div>
-            </div>
+
+            {/*}
             <FormField
-              name="tags"
-              className="newAdvertPage-formfield"
-              placeholder="List of tags separated by comma"
-              onChange={handleChangeTags}
-              value={tags}
-              maxLength={MAX_CHARACTERS_NAME}
+            name="tags"
+            className="newAdvertPage-formfield"
+            placeholder="List of tags separated by comma"
+            onChange={handleChangeTags}
+            value={tags}
+            maxLength={MAX_CHARACTERS_NAME}
             />
+          */}
+          <div className="newAdvertPage-flex"> 
+            <div className="FieldLabel right">Tags</div>
+            <div className="newAdvertPage-characters left">Selected: {tags.join(", ")}</div>
+          </div>
+          <div>
+          <select multiple id="opciones" value={tags} onChange={handleChangeTags}>
+        {opcionesTags.map((opcion) => (
+          <option key={opcion.id} value={opcion.nombre}>
+            {opcion.nombre}
+          </option>
+        ))}
+      </select>
+
+          </div>
+
             <div className="newAdvertPage-flex">
               <span className="FieldLabel">Type</span>
               <div>
@@ -137,6 +159,11 @@ const NewAdvertPage = () => {
         For buy
       </label>
     </div>
+    </div>
+
+    <div className="newAdvertPage-flex"> 
+      <div className="FieldLabel right">Tags</div>
+      <div className="newAdvertPage-characters left">Only numbers</div>
     </div>
     <div>
       <input 

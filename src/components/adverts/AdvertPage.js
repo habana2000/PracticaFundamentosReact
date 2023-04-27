@@ -1,7 +1,8 @@
+import Button from '../shared/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import Layout from '../layout/Layout';
 import { useEffect, useState } from 'react';
-import { getAdvert } from './service';
+import { getAdvert, deleteAdvert } from './service';
 
 const AdvertPage = () => {
   const params = useParams();
@@ -20,11 +21,13 @@ const AdvertPage = () => {
       });
   }, [params.advertId, navigate]);
 
-  /*
-  if (error?.status === 404) {
-    return <Navigate to="/404" />;
-  }
-  */
+  const handleDeleteClick = async () => { 
+    const confirmed = window.confirm("Do you really want to delete it?");
+    if (confirmed) {
+      await deleteAdvert(params.advertId);
+      navigate('/adverts');
+    }
+  };
 
   return (
     <Layout title="Advert detail">{advert && <div>
@@ -45,6 +48,18 @@ const AdvertPage = () => {
               max-width= "100px" 
               />
             </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <Button
+                type="submit"
+                className="newAdvertPage-submit"
+                variant="primary"
+                onClick={handleDeleteClick}
+              >
+                Delete advert
+              </Button>
           </td>
         </tr>
       </table>

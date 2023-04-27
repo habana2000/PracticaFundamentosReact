@@ -12,6 +12,11 @@ export const getAdvert = advertId => {
   return client.get(url);
 };
 
+export const deleteAdvert = advertId => {
+  const url = `${advertsUrl}/${advertId}`;
+  return client.delete(url);
+};
+
 
 export const createAdvert = advert => {
   console.log('createAdvert: ', advert)

@@ -161,7 +161,7 @@ const NewAdvertPage = () => {
 
     <div className="newAdvertPage-flex"> 
       <div className="FieldLabel right">Photo</div>
-      <div className="newAdvertPage-characters left">Choose a beatiful picture</div>
+      <div className="newAdvertPage-characters left">Choose a beautiful picture</div>
     </div>
     <div>
       <input 
@@ -169,6 +169,7 @@ const NewAdvertPage = () => {
         name="photo" 
         onChange={handleFileInputChange} />
     </div>
+    
             </div>
             <div className="newAdvertPage-footer">
               <Button
